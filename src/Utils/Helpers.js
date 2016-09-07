@@ -16,6 +16,8 @@ let helpers = {
           recent: campersInfo[0],
           allTime: campersInfo[1]
         }
+      }, (error) => {
+        console.error(error);
       });
   }
 }

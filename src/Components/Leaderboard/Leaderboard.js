@@ -8,8 +8,8 @@ class Leaderboard extends Component {
     super();
 
     this.state = {
-      recent: [],
-      allTime: []
+      recent: [' '],
+      allTime: [' ']
     }
   }
 
@@ -24,17 +24,30 @@ class Leaderboard extends Component {
   }
 
   render() {
-    console.log(this.state.recent[0].username);
     return (
       <Table
-        rowsCount={100}
-        rowHeight={50}
-        width={1000}
-        height={500}>
+        rowsCount={ this.state.allTime.length }
+        rowHeight={ 50 }
+        width={ 1000 }
+        height={ 500 }>
         <Column
-          cell={<Cell>{ 'test' }</Cell>}
-          width={200}
+          header={ <Cell style={{border: '1px solid red'}}>#</Cell> }
+          cell={props => (
+            <Cell {...props}>
+              { props.rowIndex }
+            </Cell>
+          )}
+          width={ 200 }
         />
+        <Column
+          header={ <Cell>Camper Name</Cell> }
+          cell={props => (
+            <Cell {...props}>
+              {this.state.recent[props.rowIndex].username}
+            </Cell>
+          )}
+          width={ 200 }
+          />
       </Table>
     );
   }
