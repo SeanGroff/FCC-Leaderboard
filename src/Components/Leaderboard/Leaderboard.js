@@ -5,6 +5,7 @@ import Campers from '../../Components/Campers/Campers';
 import RecentPoints from '../../Components/Recent/Recent';
 import AllTimePoints from '../../Components/Alltime/Alltime';
 import Helpers from '../../Utils/Helpers';
+import 'fixed-data-table/dist/fixed-data-table.css';
 import '../../Styles/Leaderboard.scss';
 
 class Leaderboard extends Component {
