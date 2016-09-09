@@ -30,57 +30,68 @@ class Leaderboard extends Component {
 
   render() {
     return (
-      <Table
-        rowsCount={ this.state.allTime.length }
-        rowHeight={ 50 }
-        headerHeight={ 50 }
-        width={ 1000 }
-        height={ 500 }>
-        <Column
-          header={ <Cell>#</Cell> }
-          cell={
-            <Rank
-              data={ this.state.recent }
-              field='rank'
-            />
-          }
-          fixed={ true }
-          width={ 200 }
-        />
-        <Column
-          header={ <Cell>Camper Name</Cell> }
-          cell={
-            <Campers
-              data={ this.state.recent }
-              field='username'
-            />
-          }
-          fixed={ true }
-          width={ 200 }
+      <div className="table-wrapper">
+        <div className="table-title">Free Code Camp Leaderboard</div>
+        <Table
+          rowsCount={ this.state.allTime.length }
+          rowHeight={ 50 }
+          headerHeight={ 50 }
+          width={ 800 }
+          height={ 500 }>
+          <Column
+            header={ <Cell>#</Cell> }
+            cell={
+              <Rank
+                data={ this.state.recent }
+                field='rank'
+              />
+            }
+            fixed={ true }
+            flexGrow={ 0 }
+            align={ 'center' }
+            width={ 50 }
           />
-        <Column
-          header={ <Cell>Points in last 30 days</Cell> }
-          cell={
-            <RecentPoints
-              data={ this.state.recent }
-              field='recent'
+          <Column
+            header={ <Cell>Camper Name</Cell> }
+            cell={
+              <Campers
+                data={ this.state.recent }
+                field='username'
+              />
+            }
+            fixed={ true }
+            flexGrow={ 2 }
+            align={ 'center' }            
+            width={ 200 }
             />
-          }
-          fixed={ true }
-          width={ 200 }
+          <Column
+            header={ <Cell>Points in last 30 days</Cell> }
+            cell={
+              <RecentPoints
+                data={ this.state.recent }
+                field='recent'
+              />
+            }
+            fixed={ true }
+            flexGrow={ 2 }   
+            align={ 'center' }            
+            width={ 200 }
+            />
+          <Column
+            header={ <Cell>All time points</Cell> }
+            cell={
+              <AllTimePoints
+                data={ this.state.allTime }
+                field='alltime'
+              />
+            }
+            fixed={ true }
+            flexGrow={ 2 }   
+            align={ 'center' }            
+            width={ 200 }
           />
-        <Column
-          header={ <Cell>All time points</Cell> }
-          cell={
-            <AllTimePoints
-              data={ this.state.allTime }
-              field='alltime'
-            />
-          }
-          fixed={ true }
-          width={ 200 }
-        />
-      </Table>
+        </Table>
+      </div>
     );
   }
 }
