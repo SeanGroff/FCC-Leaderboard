@@ -14,7 +14,8 @@ class Leaderboard extends Component {
 
     this.state = {
       recent: [' '],
-      allTime: [' ']
+      allTime: [' '],
+      showRecent: true
     }
   }
 
@@ -26,6 +27,12 @@ class Leaderboard extends Component {
           allTime: data.allTime.data
         });
     });
+  }
+
+  _handleClick(yesOrNo) {
+    this.setState({
+      showRecent: yesOrNo
+    })
   }
 
   render() {
@@ -42,7 +49,7 @@ class Leaderboard extends Component {
             header={ <Cell>#</Cell> }
             cell={
               <Rank
-                data={ this.state.recent }
+                data={ this.state.showRecent ? this.state.recent : this.state.allTime }
                 field='rank'
               />
             }
@@ -55,7 +62,7 @@ class Leaderboard extends Component {
             header={ <Cell>Camper Name</Cell> }
             cell={
               <Campers
-                data={ this.state.recent }
+                data={ this.state.showRecent ? this.state.recent : this.state.allTime }
                 field='username'
               />
             }
@@ -65,10 +72,10 @@ class Leaderboard extends Component {
             width={ 200 }
             />
           <Column
-            header={ <Cell>Points in last 30 days</Cell> }
+            header={ <Cell className='hover' onClick={ () => this._handleClick(true) }>Points in last 30 days</Cell> }
             cell={
               <RecentPoints
-                data={ this.state.recent }
+                data={ this.state.showRecent ? this.state.recent : this.state.allTime }
                 field='recent'
               />
             }
@@ -78,10 +85,10 @@ class Leaderboard extends Component {
             width={ 200 }
             />
           <Column
-            header={ <Cell>All time points</Cell> }
+            header={ <Cell className='hover' onClick={ () => this._handleClick(false) }>All time points</Cell> }
             cell={
               <AllTimePoints
-                data={ this.state.allTime }
+                data={ this.state.showRecent ? this.state.recent : this.state.allTime }
                 field='alltime'
               />
             }

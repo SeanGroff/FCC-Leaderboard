@@ -16,3 +16,13 @@
   font-size: 20px;
   background-color: green;
 }
+
+.hover {
+  &:hover {
+    cursor: pointer;
+    color: green;
+  }
+  &:active {
+    text-decoration: underline;
+  }
+}
